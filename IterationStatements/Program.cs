@@ -14,8 +14,14 @@ namespace IterationStatements
             }
         }
 
+        /*public static void Numbers(1000)
+          for(int i = 1000; i >= -1000; i--)
+         {
+            Console.WriteLine(i);
+         }*/
 
-        // Done!  Write a method that will print to the console numbers 3 through 999 by 3 each time
+
+    // Done!  Write a method that will print to the console numbers 3 through 999 by 3 each time
         
         public static void IncrementNumbersByThree()
         {
@@ -38,7 +44,18 @@ namespace IterationStatements
                 Console.WriteLine("False");
             }
         }
-            
+        /*
+         Public static void TwoNumbersSame(int numONE, Int numTwo)
+         {
+            if(numOne == numTwo)
+            {
+                Console.WriteLine("Same")
+            }
+            else
+            {
+            Console.WriteLine("not the same")
+            }
+         */    
     
         
         // Done! Write a method to check whether a given number is even or odd
@@ -46,10 +63,7 @@ namespace IterationStatements
         {
             if (numberOfDogs % 2 == 0)
             {
-                do
-                {
-                    Console.WriteLine($"{numberOfDogs} is even");
-                } while (false);
+                Console.WriteLine($"{numberOfDogs} is even");
             }
             else
             {
@@ -81,20 +95,20 @@ namespace IterationStatements
         public static void CanYouVote()
         {
             Console.WriteLine("Enter your age");
-            int age = 0;
-            int.TryParse(Console.ReadLine(), out age);
-            while (age != 0)
+            var canParse = int.TryParse(Console.ReadLine(), out int age);
+            while (canParse == false)
             {
-                if (age > 18)
-                {
-                    Console.WriteLine("Congratulations, you can vote!");
-                }
-                else
-                {
-                    Console.WriteLine("Sorry, you are not old enough to vote yet.");
-                }
+                Console.WriteLine("Please enter a valid age");
+                canParse = int.TryParse(Console.ReadLine(), out age);
+            }
 
-                break;
+            if (age >= 18)
+            {
+                Console.WriteLine("Congratulations, you can vote!");
+            }
+            else
+            {
+                    Console.WriteLine("Sorry, you are not old enough to vote yet.");
             }
         }
         //Hint: Use Parse or the safer TryParse() for an extra challenge
@@ -107,22 +121,21 @@ namespace IterationStatements
         public static void IsItInRange()
         {
             Console.WriteLine("Enter a number");
-            int userNumber = 0;
-            int.TryParse(Console.ReadLine(), out userNumber);
-            while (userNumber != null)
+            var canParse = int.TryParse(Console.ReadLine(), out int userNumber);
+            while (!canParse)
             {
-                if (userNumber > 10 || userNumber < -10)
-                {
-                    Console.WriteLine($"The number {userNumber} is not in range.");
-                }
-                else
-                {
-                    Console.WriteLine($"Congratulations! The number {userNumber} is in our range!");
-                }
-
-                break;
+                Console.WriteLine("Please enter a valid number");
+                canParse = int.TryParse(Console.ReadLine(), out userNumber);
             }
 
+            if (userNumber > 10 && userNumber < -10)
+            {
+                Console.WriteLine($"The number {userNumber} is not in range.");
+            }
+            else
+            {
+                Console.WriteLine($"Congratulations! The number {userNumber} is in our range!");
+            } 
         }
         
         // Done!  Write a method to display the multiplication table(from 1 to 12) of a given integer
@@ -142,7 +155,7 @@ namespace IterationStatements
 
         //Call the methods to test them in the Main method below
         static void Main(string[] args)
-        {
+        { 
             Numbers(); 
             IncrementNumbersByThree();
             CheckForEquality(12, -12);
